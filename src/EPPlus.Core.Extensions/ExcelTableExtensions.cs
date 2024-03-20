@@ -180,11 +180,11 @@ namespace EPPlus.Core.Extensions
                 PropertyInfo propertyInfo = propertyInfoAndColumnAttribute.PropertyInfo;
                 ExcelTableColumnAttribute columnAttribute = propertyInfoAndColumnAttribute.ColumnAttribute;
 
-                if (columnAttribute.ColumnIndex<=0 && string.IsNullOrEmpty(columnAttribute.ColumnName))
+                if (columnAttribute.ColumnIndex <= 0 && string.IsNullOrEmpty(columnAttribute.ColumnName))
                 {
                     columnAttribute.ColumnName = propertyInfo.Name;
                 }
-                
+
                 int col = -1;
 
                 // There is no case when both column name and index is specified since this is excluded by the attribute
@@ -216,7 +216,7 @@ namespace EPPlus.Core.Extensions
                                            CellAddress = new ExcelCellAddress(table.Address.Start.Row, columnAttribute.ColumnIndex + table.Address.Start.Column)
                                        });
                 }
-                
+
                 yield return new ExcelTableColumnDetails(col, propertyInfo, columnAttribute);
             }
         }
@@ -282,7 +282,7 @@ namespace EPPlus.Core.Extensions
                         BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty,
                         null,
                         item,
-                        new [] { Enum.Parse(type, cell.ToString(), true) });
+                        new[] { Enum.Parse(type, cell.ToString(), true) });
                 }
                 else // ...and numeric cell value
                 {
@@ -293,7 +293,7 @@ namespace EPPlus.Core.Extensions
                         BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty,
                         null,
                         item,
-                        new [] { Enum.ToObject(type, cell.ChangeType(underType)) });
+                        new[] { Enum.ToObject(type, cell.ChangeType(underType)) });
                 }
             }
 
@@ -304,14 +304,14 @@ namespace EPPlus.Core.Extensions
                     BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty,
                     null,
                     item,
-                    new [] { cell.ChangeType(type) });
+                    new[] { cell.ChangeType(type) });
             }
 
             Validator.ValidateProperty(property.GetValue(item), new ValidationContext(item) { MemberName = property.Name });
         }
 
 
-       private static bool CheckColumnByIndexIfExists(ExcelTable table, int columnIndex, bool isOptional)
+        private static bool CheckColumnByIndexIfExists(ExcelTable table, int columnIndex, bool isOptional)
         {
             try
             {

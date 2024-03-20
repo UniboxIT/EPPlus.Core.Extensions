@@ -52,7 +52,7 @@ namespace EPPlus.Core.Extensions.Tests
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
-            //-----------------------------------------------------------------------------------------------------------  
+            //-----------------------------------------------------------------------------------------------------------
             list.Count.Should().Be(5, "We have 5 rows");
 
             // 'LicensePlate' property should be mapped by column index
@@ -63,7 +63,7 @@ namespace EPPlus.Core.Extensions.Tests
 
             // 'ManufacturingDate' property should be mapped by column name "Manufacturing date"
             list.Last().ManufacturingDate.Should().BeNull("The last one's manufacturing date is unknown");
-            list.Count(x => x.ManufacturingDate == null).Should().Be(1, "Only one manufacturig date is unknown");
+            list.Count(x => x.ManufacturingDate == null).Should().Be(1, "Only one manufacturing date is unknown");
             list.Max(x => x.ManufacturingDate).Should().Be(new DateTime(2015, 3, 10), "Oldest was manufactured on 2015.03.10");
 
             // 'Ready' property should be mapped to "Is ready for traffic?" column
@@ -79,7 +79,7 @@ namespace EPPlus.Core.Extensions.Tests
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            ExcelTable table1 = ExcelPackage1.GetWorksheet("TEST2").GetTable(0);  
+            ExcelTable table1 = ExcelPackage1.GetWorksheet("TEST2").GetTable(0);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -88,7 +88,7 @@ namespace EPPlus.Core.Extensions.Tests
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
-            //-----------------------------------------------------------------------------------------------------------  
+            //-----------------------------------------------------------------------------------------------------------
             list.Count(x => !x.Price.HasValue).Should().Be(2, "Should have two");
             list.Count.Should().Be(5);
         }
@@ -131,7 +131,7 @@ namespace EPPlus.Core.Extensions.Tests
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
-            //----------------------------------------------------------------------------------------------------------- 
+            //-----------------------------------------------------------------------------------------------------------
             dataBoundsIncludingHeader.Start.Row.Should().Be(2);
             dataBoundsIncludingHeader.End.Row.Should().Be(5);
             dataBoundsIncludingHeader.Address.Should().Be("A2:C5");
@@ -173,7 +173,7 @@ namespace EPPlus.Core.Extensions.Tests
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
-            //----------------------------------------------------------------------------------------------------------- 
+            //-----------------------------------------------------------------------------------------------------------
             result.Count().Should().Be(4);
         }
 
@@ -380,12 +380,12 @@ namespace EPPlus.Core.Extensions.Tests
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
-            //-----------------------------------------------------------------------------------------------------------    
+            //-----------------------------------------------------------------------------------------------------------
             Action act = () => tableWithoutHeaderRow.AsEnumerable<StocksNullable>(c => c.WithCastingExceptionMessage("Casting error occured on '{1}'")).ToList();
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
-            //----------------------------------------------------------------------------------------------------------- 
+            //-----------------------------------------------------------------------------------------------------------
             act.Should().Throw<ExcelException>().WithMessage("Casting error occured on 'B2'");
         }
 
@@ -442,7 +442,7 @@ namespace EPPlus.Core.Extensions.Tests
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            ExcelTable table = ExcelPackage1.GetWorksheet("TEST1").GetTable("TEST1");  
+            ExcelTable table = ExcelPackage1.GetWorksheet("TEST1").GetTable("TEST1");
 
             //-----------------------------------------------------------------------------------------------------------
             // Act

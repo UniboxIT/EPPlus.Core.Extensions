@@ -3,14 +3,14 @@
     <TargetFrameworks>net461;netcoreapp2.2</TargetFrameworks>
     <AssemblyName>EPPlus.Core.Extensions.Tests</AssemblyName>
     <IsPackable>false</IsPackable>
-  </PropertyGroup>    
+  </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\testcase1.xlsx" />
     <EmbeddedResource Include="Resources\testsheets1.xlsx" />
     <EmbeddedResource Include="Resources\testsheets2.xlsx" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="5.10.2" />    
+    <PackageReference Include="FluentAssertions" Version="5.10.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
@@ -18,8 +18,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
-  </ItemGroup>  
-  
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\src\EPPlus.Core.Extensions\EPPlus.Core.Extensions.csproj" />
   </ItemGroup>

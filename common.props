@@ -12,9 +12,9 @@
 
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/eraydin/EPPlus.Core.Extensions</RepositoryUrl>
-    
+
     <Authors>Aydin ERAYDIN</Authors>
-    
+
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateAssemblyTitleAttribute>true</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyDescriptionAttribute>true</GenerateAssemblyDescriptionAttribute>
@@ -25,8 +25,8 @@
     <GenerateAssemblyVersionAttribute>true</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyFileVersionAttribute>true</GenerateAssemblyFileVersionAttribute>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    
+
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    
+
   </PropertyGroup>
 </Project>

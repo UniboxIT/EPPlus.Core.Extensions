@@ -24,7 +24,7 @@ var configuration = Argument("configuration", "Release");
 var toolpath = Argument("toolpath", @"tools");
 var branch = Argument("branch", EnvironmentVariable("APPVEYOR_REPO_BRANCH"));
 
-var nugetApiKey = EnvironmentVariable("nugetApiKey");            
+var nugetApiKey = EnvironmentVariable("nugetApiKey");
 
 var nupkgPath = "nupkg";
 var nupkgRegex = $"**/{projectName}*.nupkg";
@@ -44,7 +44,7 @@ var NUGET_PUSH_SETTINGS = new NuGetPushSettings
 
 Setup(context =>
 {
-	Information(Figlet(projectName));	
+    Information(Figlet(projectName));
 });
 
 Task("Clean")
@@ -73,31 +73,31 @@ Task("Build")
 Task("Run-Unit-Tests")
     .IsDependentOn("Build")
     .Does(() =>
-    {           
-		DotCoverAnalyse(tool =>
-					tool.DotNetCoreTest(testProject.FullPath, new DotNetCoreTestSettings { Configuration = configuration }), 
-				    new FilePath("./coverage.xml"),
-				    new DotCoverAnalyseSettings { ReportType = DotCoverReportType.DetailedXML }
-					 .WithFilter("+:EPPlus.Core.Extensions")
-					 .WithFilter("-:EPPlus.Core.Extensions.Tests")					
-					);	   								
+    {
+        DotCoverAnalyse(tool =>
+            tool.DotNetCoreTest(testProject.FullPath, new DotNetCoreTestSettings { Configuration = configuration }),
+            new FilePath("./coverage.xml"),
+            new DotCoverAnalyseSettings { ReportType = DotCoverReportType.DetailedXML }
+               .WithFilter("+:EPPlus.Core.Extensions")
+               .WithFilter("-:EPPlus.Core.Extensions.Tests")
+          );
     });
 
 Task("Upload-Coverage")
-	.IsDependentOn("Run-Unit-Tests")
-	.WithCriteria(() => !AppVeyor.Environment.PullRequest.IsPullRequest)
+    .IsDependentOn("Run-Unit-Tests")
+    .WithCriteria(() => !AppVeyor.Environment.PullRequest.IsPullRequest)
     .Does(() =>
-	{
-		Codecov(new CodecovSettings {
-						Files = new[] { "./coverage.xml" },						
-						Token = EnvironmentVariable("COVERALLS_REPO_TOKEN"),
-						Branch = branch
-			});
-	});
+    {
+        Codecov(new CodecovSettings {
+                Files = new[] { "./coverage.xml" },
+                Token = EnvironmentVariable("COVERALLS_REPO_TOKEN"),
+                Branch = branch
+        });
+    });
 
 Task("Pack")
     .IsDependentOn("Upload-Coverage")
-	.WithCriteria(() => branch == "master" && !AppVeyor.Environment.PullRequest.IsPullRequest)
+    .WithCriteria(() => branch == "master" && !AppVeyor.Environment.PullRequest.IsPullRequest)
     .Does(() =>
     {
         var nupkgFiles = GetFiles(nupkgRegex);
@@ -132,7 +132,7 @@ Task("Default")
     .IsDependentOn("Run-Unit-Tests")
     .IsDependentOn("Pack")
     .IsDependentOn("NugetPublish");
-    
+
 //////////////////////////////////////////////////////////////////////
 // EXECUTION
 //////////////////////////////////////////////////////////////////////
