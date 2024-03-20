@@ -4,7 +4,7 @@
 #addin "nuget:?package=Cake.Figlet"
 
 #tool "nuget:?package=xunit.runner.console"
-#tool "nuget:?package=JetBrains.dotCover.CommandLineTools"
+#tool "nuget:?package=JetBrains.dotCover.CommandLineTools&version=2020.3.4"
 #tool "nuget:?package=Codecov"
 
 #l "common.cake"
