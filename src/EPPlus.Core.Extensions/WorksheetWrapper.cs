@@ -101,11 +101,15 @@ namespace EPPlus.Core.Extensions
             //configure columns
             for (var i = 0; i < Columns.Count; i++)
             {
+                // Format column
+                if (Columns[i].Format != null)
+                    worksheet.Column(i + 1).Style.Numberformat.Format = Columns[i].Format;
+
                 Configuration.ConfigureColumn?.Invoke(worksheet.Column(i + 1));
                 Columns[i].ConfigureColumn?.Invoke(worksheet.Column(i + 1));
             }
         }
-     
+
         /// <summary>
         ///     Generates columns for all public properties on the type
         /// </summary>
@@ -115,10 +119,11 @@ namespace EPPlus.Core.Extensions
             List<ExcelTableColumnDetails> propertyInfoAndColumnAttributes = typeof(T).GetExcelTableColumnAttributesWithPropertyInfo();
 
             var columns = propertyInfoAndColumnAttributes.Select(x => new WorksheetColumn<T>
-                                                         {
-                                                             Header = x.ToString(),
-                                                             Map = GetGetter<T>(x.PropertyInfo.Name)
-                                                         })
+            {
+                Header = x.ToString(),
+                Format = x.ColumnAttribute.Format,
+                Map = GetGetter<T>(x.PropertyInfo.Name),
+            })
                                                          .ToList();
             return columns;
         }

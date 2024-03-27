@@ -10,6 +10,8 @@ namespace EPPlus.Core.Extensions
 
         internal string Header { get; set; }
 
+        internal string Format { get; set; }
+
         internal Action<ExcelColumn> ConfigureColumn { get; set; }
     }
 }

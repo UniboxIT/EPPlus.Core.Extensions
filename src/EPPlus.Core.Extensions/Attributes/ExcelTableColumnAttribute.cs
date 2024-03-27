@@ -70,5 +70,7 @@ namespace EPPlus.Core.Extensions.Attributes
         }
 
         public bool IsOptional { get; set; }
+
+        public string Format { get; set; }
     }
 }
