@@ -76,6 +76,28 @@ namespace EPPlus.Core.Extensions
         }
 
         /// <summary>
+        ///     Adds a column mapping.  If no column mappings are specified all public properties will be used
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="worksheet"></param>
+        /// <param name="map"></param>
+        /// <param name="columnHeader"></param>
+        /// <param name="format"></param>
+        /// <param name="configureColumn"></param>
+        /// <returns></returns>
+        public static WorksheetWrapper<T> WithColumnFormat<T>(this WorksheetWrapper<T> worksheet, Func<T, object> map, string columnHeader, string format, Action<ExcelColumn> configureColumn = null)
+        {
+            worksheet.Columns.Add(new WorksheetColumn<T>
+            {
+                Map = map,
+                Header = columnHeader,
+                Format = format,
+                ConfigureColumn = configureColumn
+            });
+            return worksheet;
+        }
+
+        /// <summary>
         ///     Adds a title row to the top of the sheet
         /// </summary>
         /// <typeparam name="T"></typeparam>
