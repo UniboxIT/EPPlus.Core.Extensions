@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
@@ -282,7 +283,7 @@ namespace EPPlus.Core.Extensions
                         BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty,
                         null,
                         item,
-                        new[] { Enum.Parse(type, cell.ToString(), true) });
+                        new[] { cell.ToString().ParseWithAttributeField<DescriptionAttribute, string>(type, nameof(DescriptionAttribute.Description), true) });
                 }
                 else // ...and numeric cell value
                 {
